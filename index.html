@@ -3,19 +3,28 @@
 <head>
 	<title></title>
 	<meta charset="utf-8">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!-- // <script src="http://maps.googleapis.com/maps/api/js"></script> -->
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Stylesheets -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-	<input type="text" id="searchText">
-	<br><br>
+	<input type="text" id="searchText" class="form-control" placeholder="Search">
+	<br>
+	<button>klicka</button>
+	<br>
 	<h1 id="celsiusNow"></h1>
 	<div id="googleMap"></div>
 	<div id="result">
 		<p>Result</p>
 	</div>
+
+	<!-- Scripts -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

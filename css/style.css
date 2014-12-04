@@ -1,18 +1,40 @@
-div {
-	display: inline-block;
-	border-radius: 10%;
+body, html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
+/*div {
+	display: inline-block;
+}*/
 
 #googleMap {
-	width:500px;
-	height:380px;
+/*	width:500px;
+	height:380px;*/
+	height: 100%;
 }
 
 #result {
-	width: 500px;
-	height: 380px;
-	/*background-color: grey;*/
-	position: absolute;
+/*	height: 100%;
+	width: 100%;*/
+	background-color: grey;
+
+	background: -moz-linear-gradient(center top , #F1F2F2 0%, #F1F2F2 100%) repeat scroll 0 0 transparent;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	bottom: 0;
+	font-size: 0.8em;
+	font-style: normal;
+	font-weight: normal;
+	position: fixed;
+	text-align: center;
+	width: 50%;
+	height: 50%;
+	margin-bottom: -50%;
+	margin-left: 25%;
+	background-repeat:no-repeat;
+	background-position: center center;
+
 }
 
 #result p {
