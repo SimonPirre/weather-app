@@ -1,0 +1,20 @@
+div {
+	display: inline-block;
+	border-radius: 10%;
+}
+
+#googleMap {
+	width:500px;
+	height:380px;
+}
+
+#result {
+	width: 500px;
+	height: 380px;
+	/*background-color: grey;*/
+	position: absolute;
+}
+
+#result p {
+	margin-left: 40px;
+}
