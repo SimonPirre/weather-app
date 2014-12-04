@@ -49,7 +49,7 @@ $(function(){
 			textResult = textResult + "Latitude: " + coordinates[0] + "<br>" +
 									  "Longitude: " + coordinates[1] + "<br>" + 
 									  "Celsius: " + timeSpans[0].t + "<br>" +
-									  "Wind Direction: <img class=\"wind_arrow\" src=\"img/ArrowUp_green.png\"/><br>";
+									  "Wind Direction: <img class=\"wind_arrow\" src=\"img/ArrowUp_Green.png\"/><br>";
 
 
 			//Skriver ut resultatet
