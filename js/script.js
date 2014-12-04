@@ -3,7 +3,7 @@ $(function(){
 	//Stänger resultatet
 	$("#result").click(function() {
         $('#result').stop(true).animate({
-			'margin-bottom': -70,
+			'margin-bottom': -1000,
 			'opacity': '0' },
 			{ queue: false,
 			  duration: 300 });
@@ -29,6 +29,7 @@ $(function(){
 
 		getWeather(latitude, longitude);
 		drawMarkers(map, latitude, longitude);
+		getAddress(latitude, longitude);
 
 		if(markers.length > 1) {
 			for(var i = 0; i < markers.length - 1; i++){
@@ -74,9 +75,6 @@ $(function(){
 		  	$("#celsiusNow").html(timeSpans[0].t + "&degC");
 		  	//Vindriktning (gröna pilen)
 			$(".wind_arrow").css("transform", "rotate("+timeSpans[0].wd+"deg)").css("height", "20px");
-
-			//Ritar ut markör
-			drawMarkers(map, latitude, longitude);
 		});
 	}
 	
@@ -106,14 +104,25 @@ $(function(){
 			latitude = Number(result.results[0].geometry.location.lat).toFixed(5);
 			longitude = Number(result.results[0].geometry.location.lng).toFixed(5);
 
-			drawMarkers(map, latitude, longitude);
-
 			console.log(latitude + "\n" + longitude);
 			
 			getWeather(latitude, longitude);
+			getAddress(latitude, longitude);
 		});
 
+	}
+	function getAddress(lat, lng) {
 
+		var address;
+		var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng;
+
+		$.getJSON(url, function (result){
+
+			// console.log(result.results[0].formatted_address);
+			address = result.results[0].formatted_address;
+			$("#address").html("Near " + address);
+
+		});
 	}
 
 
@@ -151,7 +160,8 @@ $(function(){
 
 		var marker = new google.maps.Marker({
 			map: map,
-    		anchorPoint: new google.maps.Point(0, -29)
+    		anchorPoint: new google.maps.Point(0, -29),
+    		animation:google.maps.Animation.BOUNCE
  		});
 
  		markers.push(marker);
@@ -181,19 +191,12 @@ $(function(){
 		    marker.setVisible(true);
 
 
-		    //Boxen över knappnålen
-		    var address = '';
-
-		    if (place.address_components) {
-		      	address = [
-	        		(place.address_components[0] && place.address_components[0].short_name || ''),
-	        		(place.address_components[1] && place.address_components[1].short_name || ''),
-	        		(place.address_components[2] && place.address_components[2].short_name || '')
-	      		].join(' ');
-	    	}	
-
-    		infowindow.setContent('<div><strong>' + place.name +'</strong><br>' + address);
-    		infowindow.open(map, marker);
+		    		//Visar resultatet
+        $('#result').stop(true).animate({
+			'margin-bottom': 0,
+			'opacity': '1' },
+			{ queue: false,
+			  duration: 300 });
 
     		//Hämtar coords och skriver ut i console
     		getCoords();
@@ -207,7 +210,7 @@ $(function(){
 		var centerMarker = new google.maps.Marker({
 			position: new google.maps.LatLng(lat, lng),
 			map: map,
-			title: "Simpas Crib"
+			animation:google.maps.Animation.BOUNCE
 		});
 
 		markers.push(centerMarker);
