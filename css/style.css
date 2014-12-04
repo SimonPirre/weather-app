@@ -19,21 +19,22 @@ body, html {
 	width: 100%;*/
 	background-color: grey;
 
-	background: -moz-linear-gradient(center top , #F1F2F2 0%, #F1F2F2 100%) repeat scroll 0 0 transparent;
+	/*background: -moz-linear-gradient(center top , #F1F2F2 0%, #F1F2F2 100%) repeat scroll 0 0 transparent;*/
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	bottom: 0;
-	font-size: 0.8em;
-	font-style: normal;
-	font-weight: normal;
+	font-size: 1.5em;
+/*	font-style: normal;
+	font-weight: normal;*/
 	position: fixed;
 	text-align: center;
 	width: 50%;
 	height: 50%;
-	margin-bottom: -50%;
+	margin-bottom: -100%;
 	margin-left: 25%;
-	background-repeat:no-repeat;
-	background-position: center center;
+/*	background-repeat:no-repeat;
+	background-position: center center;*/
+	opacity: 0.6;
 
 }
 

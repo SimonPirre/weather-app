@@ -1,28 +1,13 @@
 $(function(){
 
-	var flag = 1;
-	$("button").click(function() {
-		
-            if (flag == 1) {
-                $('#result').stop(true).animate({
-                	'margin-bottom': 0,
-                	'opacity': '1' },
-                	{ queue: false,
-            		  duration: 300 });
-                flag = 0;
-            }
-            else {
-                $('#result').stop(true).animate({
-                	'margin-bottom': -70,
-                	'opacity': '0' },
-                	{ queue: false,
-        			  duration: 300 });
-                flag = 1;
-            }
-
-            return false;
-	})
-
+	//Stänger resultatet
+	$("#result").click(function() {
+        $('#result').stop(true).animate({
+			'margin-bottom': -70,
+			'opacity': '0' },
+			{ queue: false,
+			  duration: 300 });
+	});
 
 /* ----------------------- GlOBAL VARIABLES ----------------------- */
 	var latitude = 0;
@@ -31,6 +16,13 @@ $(function(){
 
 /* ----------------------- SMHI API ----------------------- */
 	$("#googleMap").click(function(){
+
+		//Visar resultatet
+        $('#result').stop(true).animate({
+			'margin-bottom': 0,
+			'opacity': '1' },
+			{ queue: false,
+			  duration: 300 });
 
 		latitude = Number(latitude).toFixed(5);
 		longitude = Number(longitude).toFixed(5);
