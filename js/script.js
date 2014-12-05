@@ -1,6 +1,5 @@
 $(function(){
 
-	// getLocation();
 
 	//Stänger resultatet
 	$("#result").click(function() {
@@ -11,26 +10,6 @@ $(function(){
 			  duration: 300 });
 	});
 
-
-	function getLocation() {
-	    if (navigator.geolocation) {
-	        navigator.geolocation.getCurrentPosition(showPosition);
-	    }
-	    else {
-	        alert("Geolocation is not supported by this browser.");
-	    }
-	}
-		function showPosition(position) {
-
-			getWeather(position.coords.latitude, position.coords.longitude)
-
-	        $('#result').stop(true).animate({
-				'margin-bottom': 0,
-				'opacity': '1' },
-				{ queue: false,
-				  duration: 300 });
-
-	}
 
 /* ----------------------- GlOBAL VARIABLES ----------------------- */
 	var latitude = 0;
@@ -152,6 +131,26 @@ $(function(){
 
 
 /* ----------------------- GOOGLE MAPS API ----------------------- */
+	
+	if (navigator.geolocation) {
+  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
+	}
+	else {
+  		alert('Geo Location is not supported');
+	}
+	
+	function getCurrentCoords(position){
+
+		var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+		console.log(currentCoords);
+
+
+	}
+
+
+
+
 
 	var mapProp = {
 		center: new google.maps.LatLng(62.774837, 17.424316),
