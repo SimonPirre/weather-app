@@ -1,5 +1,7 @@
 $(function(){
 
+	getLocation();
+
 	//Stänger resultatet
 	$("#result").click(function() {
         $('#result').stop(true).animate({
@@ -8,6 +10,27 @@ $(function(){
 			{ queue: false,
 			  duration: 300 });
 	});
+
+
+	function getLocation() {
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(showPosition);
+	    }
+	    else {
+	        alert("Geolocation is not supported by this browser.");
+	    }
+	}
+		function showPosition(position) {
+
+			getWeather(position.coords.latitude, position.coords.longitude)
+
+	        $('#result').stop(true).animate({
+				'margin-bottom': -1000,
+				'opacity': '0' },
+				{ queue: false,
+				  duration: 300 });
+
+	}
 
 /* ----------------------- GlOBAL VARIABLES ----------------------- */
 	var latitude = 0;
