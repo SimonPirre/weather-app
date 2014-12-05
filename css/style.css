@@ -3,10 +3,16 @@ body, html {
 	width: 100%;
 	margin: 0;
 	padding: 0;
+	color: white;
 }
+
 #searchText {
 	border-radius: 0;
 	height: 10%;
+}
+
+#celsiusNow {
+	color: black;
 }
 
 #googleMap {
@@ -16,29 +22,45 @@ body, html {
 }
 
 #result {
-/*	height: 100%;
-	width: 100%;*/
-	background-color: grey;
+	background-color: rgba(0, 0, 0, 0.8);
 
-	/*background: -moz-linear-gradient(center top , #F1F2F2 0%, #F1F2F2 100%) repeat scroll 0 0 transparent;*/
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	bottom: 0;
 	font-size: 1.5em;
-/*	font-style: normal;
-	font-weight: normal;*/
 	position: fixed;
 	text-align: center;
 	width: 70%;
 	height: 50%;
 	margin-bottom: -100%;
 	margin-left: 15%;
-/*	background-repeat:no-repeat;
-	background-position: center center;*/
-	opacity: 0.6;
 
 }
 
 #result p {
 	margin-left: 40px;
+}
+
+
+
+/*320*/
+@media screen and (min-width: 1px) {
+
+	#address {
+		font-size: .5em;
+	}
+	#resultText {
+		font-size: .5em;
+	}
+}
+
+@media screen and (min-width: 500px) {
+
+	#address {
+		font-size: 1.5em;
+	}
+	#resultText {
+		font-size: 1em;
+	}
+
 }
