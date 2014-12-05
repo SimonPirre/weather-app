@@ -1,6 +1,6 @@
 $(function(){
 
-	getLocation();
+	// getLocation();
 
 	//Stänger resultatet
 	$("#result").click(function() {
@@ -25,8 +25,8 @@ $(function(){
 			getWeather(position.coords.latitude, position.coords.longitude)
 
 	        $('#result').stop(true).animate({
-				'margin-bottom': -1000,
-				'opacity': '0' },
+				'margin-bottom': 0,
+				'opacity': '1' },
 				{ queue: false,
 				  duration: 300 });
 
