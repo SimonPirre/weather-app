@@ -131,14 +131,6 @@ $(function(){
 
 
 /* ----------------------- GOOGLE MAPS API ----------------------- */
-	var mapProp = {
-		// center: new google.maps.LatLng(62.774837, 17.424316),
-		center: currentCoords,
-		zoom: 5,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-
-	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 	
 	if (navigator.geolocation) {
   		navigator.geolocation.getCurrentPosition(getCurrentCoords);
@@ -151,20 +143,25 @@ $(function(){
 
 		var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-		console.log(currentCoords);
 
-		var marker = new google.maps.Marker({
-      		position: coords,
-      		map: map,
-      		title:"You are here!"
- 		});
+		var la = position.coords.latitude;
+		var lo = position.coords.longitude;
 
+		console.log("lat: " + la + "     lng: " + lo);
 
 	}
 
 
 
 
+	var mapProp = {
+		// center: new google.maps.LatLng(62.774837, 17.424316),
+		center: currentCoords,
+		zoom: 5,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
 
 	function initialize() {
