@@ -15,8 +15,6 @@ $(function(){
 	var markers = [];
 
 /* ----------------------- SMHI API ----------------------- */
-	// $("#googleMap").click(function(){
-
 	function mapClick(){
 		//Visar resultatet
         $('#result').stop(true).animate({
@@ -39,8 +37,6 @@ $(function(){
 		}
 	}
 
-	// });
-	
 	function getWeather (lat, lng) {
 		//Koordinater
 		latitude = Number(latitude).toFixed(5);
@@ -67,7 +63,9 @@ $(function(){
 			textResult = textResult + "Latitude: " + coordinates[0] + "<br>" +
 									  "Longitude: " + coordinates[1] + "<br>" + 
 									  "Celsius: " + timeSpans[0].t + "<br>" +
-									  "Wind Direction: <img class=\"wind_arrow\" src=\"img/ArrowUp_Green.png\"/><br>";
+									  "Vindriktning: <img class=\"wind_arrow\" src=\"img/ArrowUp_Green.png\"/><br>" +
+									  "Vindhastighet: " + timeSpans[0].ws + " m/s<br>" + 
+									  "Byvind: " + timeSpans[0].gust + " m/s<br>";
 
 
 			//Skriver ut resultatet
