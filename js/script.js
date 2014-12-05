@@ -151,6 +151,14 @@ $(function(){
       		title:"You are here!"
  		});
 
+	var mapProp = {
+		// center: new google.maps.LatLng(62.774837, 17.424316),
+		center: currentCoords,
+		zoom: 5,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
 	}
 
@@ -158,13 +166,6 @@ $(function(){
 
 
 
-	var mapProp = {
-		center: new google.maps.LatLng(62.774837, 17.424316),
-		zoom: 5,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-
-	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
 	function initialize() {
 		//Hämtar kordinater på map-click
