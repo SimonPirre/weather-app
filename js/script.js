@@ -141,29 +141,6 @@ $(function(){
 
 	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-	
-
-	if (navigator.geolocation) {
-  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
-	}
-	else {
-  		alert('Geo Location is not supported');
-	}
-	
-	function getCurrentCoords(position){
-
-		var la = position.coords.latitude;
-		var lo = position.coords.longitude;
-
-		console.log("lat: " + la + "     lng: " + lo);
-
-		drawMarkers(map, la, lo);
-
-	}
-
-
-
-
 	function initialize() {
 		//Hämtar kordinater på map-click
 		google.maps.event.addListener(map, 'click', function (e) {
@@ -245,5 +222,25 @@ $(function(){
 
 	//Visa hela kartan
 	google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+	if (navigator.geolocation) {
+  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
+	}
+	else {
+  		alert('Geo Location is not supported');
+	}
+	
+	function getCurrentCoords(position){
+
+		var la = position.coords.latitude;
+		var lo = position.coords.longitude;
+
+		console.log("lat: " + la + "     lng: " + lo);
+
+		drawMarkers(map, la, lo);
+
+	}
 });
 
