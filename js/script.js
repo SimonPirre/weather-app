@@ -153,8 +153,8 @@ $(function(){
 
 
 	var mapProp = {
-		// center: new google.maps.LatLng(62.774837, 17.424316),
-		center: currentCoords,
+		center: new google.maps.LatLng(62.774837, 17.424316),
+		// center: currentCoords,
 		zoom: 5,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
