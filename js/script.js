@@ -131,7 +131,7 @@ $(function(){
 /* ----------------------- GOOGLE MAPS API ----------------------- */
 
 	var mapProp = {
-		center: new google.maps.LatLng(59.33319, 17.7553),
+		center: new google.maps.LatLng(62.774837, 17.424316),
 		zoom: 5,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
