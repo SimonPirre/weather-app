@@ -15,8 +15,9 @@ $(function(){
 	var markers = [];
 
 /* ----------------------- SMHI API ----------------------- */
-	$("#googleMap").click(function(){
+	// $("#googleMap").click(function(){
 
+	function mapClick(){
 		//Visar resultatet
         $('#result').stop(true).animate({
 			'margin-bottom': 0,
@@ -36,8 +37,9 @@ $(function(){
 				markers[i].setVisible(false);
 			}
 		}
+	}
 
-	});
+	// });
 	
 	function getWeather (lat, lng) {
 		//Koordinater
@@ -144,6 +146,7 @@ $(function(){
 			latitude = e.latLng.lat();
 			longitude = e.latLng.lng();
 			infowindow.close();
+			mapClick();
 		});
 
 		var celsius = document.getElementById("celsiusNow");
