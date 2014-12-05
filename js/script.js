@@ -145,6 +145,8 @@ $(function(){
 
 		console.log(currentCoords);
 
+		drawMarkers(Number(position.coords.latitude).toFixed(5), Number(position.coords.longitude).toFixed(5));
+
 
 	}
 
