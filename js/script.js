@@ -131,7 +131,27 @@ $(function(){
 
 
 /* ----------------------- GOOGLE MAPS API ----------------------- */
+		if (navigator.geolocation) {
+  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
+	}
+	else {
+  		alert('Geo Location is not supported');
+	}
 	
+	function getCurrentCoords(position){
+
+		var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+		var la = position.coords.latitude;
+		var lo = position.coords.longitude;
+
+		console.log("lat: " + la + "     lng: " + lo);
+
+		drawMarkers(map, la, lo);
+
+	}
+
+
 	var mapProp = {
 		// center: new google.maps.LatLng(62.774837, 17.424316),
 		center: currentCoords,
@@ -225,22 +245,6 @@ $(function(){
 
 
 
-	if (navigator.geolocation) {
-  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
-	}
-	else {
-  		alert('Geo Location is not supported');
-	}
-	
-	function getCurrentCoords(position){
 
-		var la = position.coords.latitude;
-		var lo = position.coords.longitude;
-
-		console.log("lat: " + la + "     lng: " + lo);
-
-		drawMarkers(map, la, lo);
-
-	}
 });
 
