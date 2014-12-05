@@ -131,25 +131,25 @@ $(function(){
 
 
 /* ----------------------- GOOGLE MAPS API ----------------------- */
-		if (navigator.geolocation) {
-  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
-	}
-	else {
-  		alert('Geo Location is not supported');
-	}
+	// 	if (navigator.geolocation) {
+ //  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
+	// }
+	// else {
+ //  		alert('Geo Location is not supported');
+	// }
 	
-	function getCurrentCoords(position){
+	// function getCurrentCoords(position){
 
-		var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	// 	var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-		var la = position.coords.latitude;
-		var lo = position.coords.longitude;
+	// 	var la = position.coords.latitude;
+	// 	var lo = position.coords.longitude;
 
-		console.log("lat: " + la + "     lng: " + lo);
+	// 	console.log("lat: " + la + "     lng: " + lo);
 
-		drawMarkers(map, la, lo);
+	// 	drawMarkers(map, la, lo);
 
-	}
+	// }
 
 
 	var mapProp = {
