@@ -54,7 +54,7 @@ body, html {
 	}
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 900px) {
 
 	#address {
 		font-size: 1.5em;
