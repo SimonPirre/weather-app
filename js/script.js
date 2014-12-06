@@ -1,6 +1,5 @@
 $(function(){
 
-
 	//Stänger resultatet
 	$("#result").click(function() {
         $('#result').stop(true).animate({
@@ -18,12 +17,6 @@ $(function(){
 
 /* ----------------------- SMHI API ----------------------- */
 	function mapClick(){
-		//Visar resultatet
-        $('#result').stop(true).animate({
-			'margin-bottom': 0,
-			'opacity': '1' },
-			{ queue: false,
-			  duration: 300 });
 
 		latitude = Number(latitude).toFixed(5);
 		longitude = Number(longitude).toFixed(5);
@@ -48,35 +41,47 @@ $(function(){
 		var coordinates = [];
 		var timeSpans = [];
 		var textResult = "";
+		//Vindriktning
+		var wd;
+
+		//Konverterar date till JSON (1 timme bakåt)
+		var date = new Date().toJSON();
 
 		$.getJSON(url, function (result){
 
-			//Pushar inte koordinater och resultat
-			$.each(result, function (key, value){
-				coordinates.push(value);
-			});
+			//Loopar genom resultatet och skriver ut det
+			for(var i = 0; i < result.timeseries.length - 1; i++){
 
-			//Pushar in olika tider med väderdata
-			$.each(coordinates[3], function (key, value){
-				timeSpans.push(value);
-			});
+				if(date < result.timeseries[i+1].validTime && date > result.timeseries[i].validTime){
 
-			//Enkelt resultat för temperaturen just nu
-			textResult = textResult + "Latitude: " + coordinates[0] + "<br>" +
-									  "Longitude: " + coordinates[1] + "<br>" + 
-									  "Celsius: " + timeSpans[0].t + "<br>" +
-									  "Vindriktning: <img class=\"wind_arrow\" src=\"img/ArrowUp_Green.png\"/><br>" +
-									  "Vindhastighet: " + timeSpans[0].ws + " m/s<br>" + 
-									  "Byvind: " + timeSpans[0].gust + " m/s<br>";
+					textResult = textResult + "Latitude: " + result.lat + "<br>" +
+							  "Longitude: " + result.lon + "<br>" + 
+							  "Celsius: " + result.timeseries[i].t + "<br>" +
+							  "Vindriktning: <img class=\"wind_arrow\" src=\"img/ArrowUp_Green.png\"/><br>" +
+							  "Vindhastighet: " + result.timeseries[i].ws + " m/s<br>" + 
+							  "Byvind: " + result.timeseries[i].gust + " m/s<br>";
 
+							  //Celsius på kartan
+							  $("#celsiusNow").html(result.timeseries[i].t + "&degC");
+							  wd = result.timeseries[i].wd;
+					
+				}
+
+			}
+			// console.log(result);
 
 			//Skriver ut resultatet
 			$("p").html("");
 			$("p").append(textResult);
-			//Celsius på kartan
-		  	$("#celsiusNow").html(timeSpans[0].t + "&degC");
 		  	//Vindriktning (gröna pilen)
-			$(".wind_arrow").css("transform", "rotate("+timeSpans[0].wd+"deg)").css("height", "20px");
+			$(".wind_arrow").css("transform", "rotate("+wd+"deg)").css("height", "20px");
+
+			//Slide up från botten
+	        $('#result').stop(true).animate({
+				'margin-bottom': 0,
+				'opacity': '1' },
+				{ queue: false,
+				  duration: 300 });
 		});
 	}
 	
@@ -88,28 +93,26 @@ $(function(){
 	function getCoords (){
 
 		var searchText = $("#searchText").val();
-		searchText = searchText.replace(/\ /g, '+');
-		searchText = searchText.replace(/\,/g, '');
-		searchText = searchText.replace(/\ö/gi, "o");
+		searchText = searchText.replace(/\s/g, "+");
+		searchText = searchText.replace(/,/g, "");
+		searchText = searchText.replace(/ö/gi, "o");
 		searchText = searchText.replace(/[åä]/gi, "a");
 
 		var url = "http://maps.google.com/maps/api/geocode/json?address=" + searchText;
-		var allAddresses = [];
 
 		$.getJSON(url, function (result) {
 
-			$.each(result, function (key, value){
-				allAddresses.push(value);
-			});
-
-
 			latitude = Number(result.results[0].geometry.location.lat).toFixed(5);
 			longitude = Number(result.results[0].geometry.location.lng).toFixed(5);
+
+			console.log(result);
 
 			console.log(latitude + "\n" + longitude);
 			
 			getWeather(latitude, longitude);
 			getAddress(latitude, longitude);
+
+
 		});
 
 	}
@@ -131,25 +134,26 @@ $(function(){
 
 
 /* ----------------------- GOOGLE MAPS API ----------------------- */
-	// 	if (navigator.geolocation) {
- //  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
-	// }
-	// else {
- //  		alert('Geo Location is not supported');
-	// }
+	if (navigator.geolocation) {
+  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
+	}
+	else {
+  		alert('Geo Location is not supported');
+	}
 	
-	// function getCurrentCoords(position){
+	function getCurrentCoords(position){
 
-	// 	var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-	// 	var la = position.coords.latitude;
-	// 	var lo = position.coords.longitude;
+		var lat = position.coords.latitude;
+		var lon = position.coords.longitude;
 
-	// 	console.log("lat: " + la + "     lng: " + lo);
+		console.log("lat: " + la + "     lng: " + lo);
 
-	// 	drawMarkers(map, la, lo);
+		drawMarkers(map, lat, lon);
+		getCoords();
 
-	// }
+	}
 
 
 	var mapProp = {
@@ -213,14 +217,6 @@ $(function(){
 
 		    marker.setPosition(place.geometry.location);
 		    marker.setVisible(true);
-
-
-		    		//Visar resultatet
-        $('#result').stop(true).animate({
-			'margin-bottom': 0,
-			'opacity': '1' },
-			{ queue: false,
-			  duration: 300 });
 
     		//Hämtar coords och skriver ut i console
     		getCoords();
