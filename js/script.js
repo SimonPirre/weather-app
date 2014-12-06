@@ -36,7 +36,7 @@ $(function(){
 		//Koordinater
 		latitude = Number(latitude).toFixed(5);
 		longitude = Number(longitude).toFixed(5);
-		
+
 		var url = "http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/" + latitude + "/lon/" + longitude + "/data.json";
 		var textResult = "";
 		//Vindriktning
@@ -138,51 +138,51 @@ $(function(){
 /* ----------------------- GOOGLE MAPS API ----------------------- */
 	
 
-	function getCurrentCoords(position){
+	// function getCurrentCoords(position){
 
-		var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	// 	var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-		var lat = Number(position.coords.latitude).toFixed(5);
-		var lon = Number(position.coords.longitude).toFixed(5);
+	// 	var lat = Number(position.coords.latitude).toFixed(5);
+	// 	var lon = Number(position.coords.longitude).toFixed(5);
 
-		console.log("lat: " + lat + "     lng: " + lon);
-
-
-		var mapProp = {
-			center: currentCoords,
-			zoom: 5,
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			streetViewControl: false
-		};
-
-		GoogleMap.mapProp = mapProp;
-
-		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
-		drawMarkers(map, lat, lon);
-
-		getWeather(lat, lon);
+	// 	console.log("lat: " + lat + "     lng: " + lon);
 
 
-	}
+	// 	var mapProp = {
+	// 		center: currentCoords,
+	// 		zoom: 5,
+	// 		mapTypeId: google.maps.MapTypeId.ROADMAP,
+	// 		streetViewControl: false
+	// 	};
 
-	if (navigator.geolocation) {
-  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
-	}
-	else {
-  		alert('Geo Location is not supported');
-	}
+	// 	GoogleMap.mapProp = mapProp;
+
+	// 	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+	// 	drawMarkers(map, lat, lon);
+
+	// 	getWeather(lat, lon);
+
+
+	// }
+
+	// if (navigator.geolocation) {
+ //  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
+	// }
+	// else {
+ //  		alert('Geo Location is not supported');
+	// }
 	
 	var GoogleMap = {};
-	// var mapProp = {
-	// 	center: new google.maps.LatLng(62.774837, 17.424316),
-	// 	// center: currentCoords,
-	// 	zoom: 5,
-	// 	mapTypeId: google.maps.MapTypeId.ROADMAP,
-	// 	streetViewControl: false
-	// };
+	var mapProp = {
+		center: new google.maps.LatLng(62.774837, 17.424316),
+		// center: currentCoords,
+		zoom: 5,
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		streetViewControl: false
+	};
 
-	var map = new google.maps.Map(document.getElementById("googleMap"), GoogleMap.mapProp);
+	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
 	function initialize() {
 		//Hämtar kordinater på map-click
