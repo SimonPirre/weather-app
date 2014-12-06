@@ -38,8 +38,6 @@ $(function(){
 		longitude = Number(longitude).toFixed(5);
 
 		var url = "http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/" + latitude + "/lon/" + longitude + "/data.json";
-		var coordinates = [];
-		var timeSpans = [];
 		var textResult = "";
 		//Vindriktning
 		var wd;
@@ -144,8 +142,8 @@ $(function(){
 
 		var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-		var lat = position.coords.latitude;
-		var lon = position.coords.longitude;
+		var lat = Number(position.coords.latitude).toFixed(5);
+		var lon = Number(position.coords.longitude).toFixed(5);
 
 		console.log("lat: " + lat + "     lng: " + lon);
 
