@@ -140,13 +140,6 @@ $(function(){
 /* ----------------------- GOOGLE MAPS API ----------------------- */
 	
 
-	if (navigator.geolocation) {
-  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
-	}
-	else {
-  		alert('Geo Location is not supported');
-	}
-	
 	function getCurrentCoords(position){
 
 		var currentCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -175,6 +168,13 @@ $(function(){
 
 	}
 
+	if (navigator.geolocation) {
+  		navigator.geolocation.getCurrentPosition(getCurrentCoords);
+	}
+	else {
+  		alert('Geo Location is not supported');
+	}
+	
 	var GoogleMap = {};
 	// var mapProp = {
 	// 	center: new google.maps.LatLng(62.774837, 17.424316),
