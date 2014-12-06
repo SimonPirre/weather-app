@@ -49,6 +49,7 @@ $(function(){
 
 		$.getJSON(url, function (result){
 
+
 			//Loopar genom resultatet och skriver ut det
 			for(var i = 0; i < result.timeseries.length - 1; i++){
 
@@ -68,7 +69,6 @@ $(function(){
 				}
 
 			}
-			// console.log(result);
 
 			//Skriver ut resultatet
 			$("p").html("");
@@ -76,13 +76,17 @@ $(function(){
 		  	//Vindriktning (gröna pilen)
 			$(".wind_arrow").css("transform", "rotate("+wd+"deg)").css("height", "20px");
 
-			//Slide up från botten
-	        $('#result').stop(true).animate({
-				'margin-bottom': 0,
-				'opacity': '1' },
-				{ queue: false,
-				  duration: 300 });
+		})
+		.error(function(error){
+			$("p").html("Vädret kunde inte visas för denna plats.");
 		});
+
+		//Slide up från botten
+        $('#result').stop(true).animate({
+			'margin-bottom': 0,
+			'opacity': '1' },
+			{ queue: false,
+			  duration: 300 });
 	}
 	
 
@@ -134,6 +138,8 @@ $(function(){
 
 
 /* ----------------------- GOOGLE MAPS API ----------------------- */
+	
+
 	if (navigator.geolocation) {
   		navigator.geolocation.getCurrentPosition(getCurrentCoords);
 	}
@@ -148,22 +154,37 @@ $(function(){
 		var lat = position.coords.latitude;
 		var lon = position.coords.longitude;
 
-		console.log("lat: " + la + "     lng: " + lo);
+		console.log("lat: " + lat + "     lng: " + lon);
+
+
+		var mapProp = {
+			center: currentCoords,
+			zoom: 5,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			streetViewControl: false
+		};
+
+		GoogleMap.mapProp = mapProp;
+
+		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
 		drawMarkers(map, lat, lon);
-		getCoords();
+
+		getWeather(lat, lon);
+
 
 	}
 
+	var GoogleMap = {};
+	// var mapProp = {
+	// 	center: new google.maps.LatLng(62.774837, 17.424316),
+	// 	// center: currentCoords,
+	// 	zoom: 5,
+	// 	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	// 	streetViewControl: false
+	// };
 
-	var mapProp = {
-		center: new google.maps.LatLng(62.774837, 17.424316),
-		// center: currentCoords,
-		zoom: 5,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-
-	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+	var map = new google.maps.Map(document.getElementById("googleMap"), GoogleMap.mapProp);
 
 	function initialize() {
 		//Hämtar kordinater på map-click
@@ -238,9 +259,6 @@ $(function(){
 
 	//Visa hela kartan
 	google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
 
 });
 
