@@ -37,7 +37,7 @@ $(function(){
 		latitude = Number(latitude).toFixed(5);
 		longitude = Number(longitude).toFixed(5);
 
-		var url = "http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/" + latitude + "/lon/" + longitude + "/data.json";
+		var url = "http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/" + lat+ "/lon/" + lng + "/data.json";
 		var textResult = "";
 		//Vindriktning
 		var wd;
