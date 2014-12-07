@@ -41,6 +41,9 @@ body, html {
 	margin-left: 40px;
 }
 
+.weather-icon {
+	height: 40px;
+}
 
 
 /*320*/
