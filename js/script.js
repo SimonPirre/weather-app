@@ -1,27 +1,11 @@
+/*
+	Påminnelse till mig själv:
+	RENSA KODEN OCH GÖR DEN SNYGGARE NÄR JAG HAR TID! :)
+
+*/
+
 $(function(){
 	function initialize(position) {
-
-		// if(position != null){
-
-		// 	var mapLat = Number(position.coords.latitude).toFixed(5);
-		// 	var mapLon = Number(position.coords.longitude).toFixed(5);
-
-
-
-		//     var mapOptions = {
-		//         center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-		//         zoom: 15,
-		//         panControl: false,
-		//         zoomControl: false
-		//     };
-
-		//     var map = new google.maps.Map(document.getElementById("googleMap"),
-		//     mapOptions);
-
-		//     getCoords(mapLat, mapLon);
-
-		// }
-
 
 		//Stänger resultatet
 		$("#result").click(function() {
@@ -39,6 +23,7 @@ $(function(){
 		var markers = [];
 
 	/* ----------------------- SMHI API ----------------------- */
+		//Funktion som exekveras när man klickar på kartan (förbättra koden)
 		function mapClick(){
 
 			latitude = Number(latitude).toFixed(5);
@@ -103,6 +88,7 @@ $(function(){
 
 			})
 			.error(function(error){
+				//Om vädret inte kunde hämtas
 				$("#resultText").html("Vädret kunde inte visas för denna plats.");
 				$("#weatherNow").html("");
 			});
@@ -115,6 +101,7 @@ $(function(){
 				  duration: 300 });
 		}
 
+		//Checkar olika parametrar för att fastställa vädret
 		function displayWeatherIcons(weather, lcc, mcc, hcc, tstm, jDate) {
 
 			var clouds = lcc + mcc + hcc;
@@ -303,14 +290,6 @@ $(function(){
 	}
 	//Visa hela kartan
 	google.maps.event.addDomListener(window, 'load', initialize);
-
-	// checka om användaren kan använda geolocation
-	// if (navigator.geolocation) {
-	// 	navigator.geolocation.getCurrentPosition(initialize);
-	// } 
-	// else {
-	// 	alert('Your browser or device does not support geolocation.');
-	// }
 
 });
 
