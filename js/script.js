@@ -149,13 +149,13 @@ $(function(){
 			if(tstm>50){
 				$("#weatherNow").html("Vädret nu: <img class='weather-icon' src='img/weather-icons/thunder_rain.png'>");
 			}
-			if(getH>=0 && getH<7 && weather == 0 && clouds <1){
+			if((getH>=20 || getH<7) && weather == 0 && clouds <1){
 				$("#weatherNow").html("Vädret nu: <img class='weather-icon' src='img/weather-icons/clear_moon.png'>");
 			}
-			else if(getH>=0 && getH<7 && weather == 0 && clouds>0 && clouds <12){
+			else if((getH>=20 || getH<7) && weather == 0 && clouds>0 && clouds <12){
 				$("#weatherNow").html("Vädret nu: <img class='weather-icon' src='img/weather-icons/moon_cloud.png'>");
 			}
-			else if(getH>=0 && getH<7 && weather == 0 && clouds >=12){
+			else if((getH>=20 || getH<7) && weather == 0 && clouds >=12){
 				$("#weatherNow").html("Vädret nu: <img class='weather-icon' src='img/weather-icons/cloud.png'>");
 			}
 
